@@ -1,15 +1,6 @@
-#version: '2'
-#services :
-  jenkins:
-    restart: always
-    image: jenkins:2.7.2
-    ports:
-      - 8081:8080
-      - 50000:50000
-    volumes:
-      - /home/docker/jenkins:/var/jenkins_home
-      - /bin/docker:/usr/bin/docker 
-      - /var/run/docker.sock:/var/run/docker.sock
+version: '2'
+
+services:
   redis:
     restart: always
     image: sameersbn/redis:latest
@@ -32,7 +23,7 @@
   gitlab:
     restart: always
     image: sameersbn/gitlab:latest
-    links:
+    depends_on:
     - redis
     - postgresql
     ports:
