@@ -1,0 +1,30 @@
+#version: '2'
+#services :
+  jenkins:
+    restart: always
+    image: jenkins:2.7.2
+    ports:
+      - 8081:8080
+      - 50000:50000
+    volumes:
+      - /home/docker/jenkins:/var/jenkins_home
+      - /bin/docker:/usr/bin/docker 
+      - /var/run/docker.sock:/var/run/docker.sock
+  redis:
+    restart: always
+    image: sameersbn/redis:latest
+    command:
+    - --loglevel warning
+    volumes:
+    - /srv/docker/gitlab/redis:/var/lib/redis:Z
+
+  postgresql:
+    restart: always
+    image: sameersbn/postgresql:latest
+    volumes:
+    - /srv/docker/gitlab/postgresql:/var/lib/postgresql:Z
+    environment:
+    - DB_USER=gitlab
+    - DB_PASS=password
+    - DB_NAME=gitlabhq_production
+    - DB_EXTENSION=pg_trgm
