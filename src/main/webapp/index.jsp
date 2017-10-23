@@ -3,25 +3,23 @@
 <html>
 <head><title>TomcatA</title></head>
 <body>
-
+hello ,maven jenkins suess!!!
 <table align="centre" border="1">
     <tr>
-        <td>Session ID</td>
-        <td><%= session.getId() %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td>Created on</td>
-        <td><%= session.getCreationTime() %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 </body>
 </html>
-sessionID:<%=session.getId()%>
-<br>
-SessionIP:<%=request.getServerName()%>
-<br>
-SessionPort:<%=request.getServerPort()%>
-<%
-    out.println("This is Tomcat Server A");
-%>
-Server Info:<% out.println(request.getLocalAddr() + " : " + request.getLocalPort()+"<br>");%>
+
