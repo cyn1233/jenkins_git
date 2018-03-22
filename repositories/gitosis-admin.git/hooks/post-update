@@ -1,4 +1,0 @@
-#!/bin/sh
-set -e
-gitosis-run-hook post-update
-git-update-server-info
