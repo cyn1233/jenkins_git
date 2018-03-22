@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+ nginx:
+  restart: always 
+  image: thz/nginx:1.8.1
+  links: 
+  - tomcat1:t01 
+  - tomcat2:t02
+  ports: 
+  - "80:80" 
+  volumes:
+  - /data/nginx/conf/:/opt/nginx/config/nginx.conf
+  - /data/config/:/data/config/
+ tomcat1:
+  restart: always 
+  image: thz/tomcat1:7.82
+  ports: 
+  - "9091:8080"
+  volumes:  
+  - /data/tomcat1/webapps:/opt/apache-tomcat-7.0.82/webapps
+  - /data/tomcat1/logs/:/opt/apache-tomcat-7.0.82/logs/
+  environment:
+  - TOMCAT_SERVER_ID= tomcat_server_001
+ tomcat2: 
+  restart: always
+  image: thz/tomcat2:7.82
+  ports: 
+  - "9092:8080"
+  volumes: 
+  - /data/tomcat2/webapps:/opt/apache-tomcat-7.0.82/webapps
+  - /data/tomcat2/logs/:/opt/apache-tomcat-7.0.82/logs/
+  environment:
+  - TOMCAT_SERVER_ID=tomcat_server_002
